@@ -21,6 +21,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: print python
+        run: python --version
+
+
       - name: setup django
         run: pip install django
 
