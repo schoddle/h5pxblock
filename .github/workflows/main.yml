@@ -1,0 +1,32 @@
+name: Cypress Tests using Cypress Docker Image
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Checkout xblock-sdk repo
+        uses: actions/checkout@v3
+        with:
+          repository: openedx/xblock-sdk
+          path: xblock-sdk       
+
+      - name: Setup xblock-sdk
+        working-directory: xblock-sdk
+        run: make install
+
+      - name: Run xblock-sdk server
+        working-directory: xblock-sdk
+        run: python manage.py runserver
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          browser: chrome
