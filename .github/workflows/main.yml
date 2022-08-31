@@ -42,7 +42,8 @@ jobs:
         run: |
           pwd
           du -a .
-          make install
+          pip install -r requirements/dev.txt
+          pip install -r requirements/local.txt 
 
       - name: Run xblock-sdk server
         working-directory: xblock-sdk
