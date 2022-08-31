@@ -22,11 +22,11 @@ jobs:
       #     python-version: ${{ matrix.python-version }}
 
       - name: install pip
-        run: |
-          # python --version
+        run: |          
           apt update -qq
-          # apt install -y python3-pip
-          # pip3 --version
+          apt install -y python3-pip
+          python --version
+          pip3 --version
 
       # - name: setup django
       #   run: pip install django
@@ -41,7 +41,6 @@ jobs:
         working-directory: xblock-sdk
         run: |
           pwd
-          du -a .
           pip install -r requirements/dev.txt
           pip install -r requirements/local.txt
           python ./manage.py runserver
