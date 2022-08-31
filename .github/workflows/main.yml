@@ -25,6 +25,7 @@ jobs:
         run: |  
           cat /etc/*-release
           python3 --version
+          python3 -m ensurepip --default-pip
           python3 -m pip install --upgrade pip setuptools wheel        
           # apt update -qq
           # apt install -y python3-pip
