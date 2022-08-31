@@ -25,13 +25,13 @@ jobs:
         run: |  
           cat /etc/*-release
           python3 --version
-          python3 -m ensurepip --default-pip
-          python3 -m pip install --upgrade pip setuptools wheel        
+          # python3 -m ensurepip --default-pip
+          #python3 -m pip install --upgrade pip setuptools wheel        
           # apt update -qq
-          # apt install -y python3-pip
+          apt install -y python3-pip
           # python --version
-          # pip3 --version
-          pip --version
+          pip3 --version
+          # pip --version
 
       # - name: setup django
       #   run: pip install django
@@ -46,8 +46,8 @@ jobs:
         working-directory: xblock-sdk
         run: |
           pwd
-          pip install -r requirements/dev.txt
-          pip install -r requirements/local.txt
+          pip3 install -r requirements/dev.txt
+          pip3 install -r requirements/local.txt
           python ./manage.py runserver
 
       - name: Cypress run
