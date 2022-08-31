@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8']
+        python-version: ['3.9']
 
     container: cypress/browsers:node16.14.0-slim-chrome99-ff97
     steps:
