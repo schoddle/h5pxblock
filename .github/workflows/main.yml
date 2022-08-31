@@ -43,11 +43,8 @@ jobs:
           pwd
           du -a .
           pip install -r requirements/dev.txt
-          pip install -r requirements/local.txt 
-
-      - name: Run xblock-sdk server
-        working-directory: xblock-sdk
-        run: python ./manage.py runserver
+          pip install -r requirements/local.txt
+          python ./manage.py runserver
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
