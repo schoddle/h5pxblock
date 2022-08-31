@@ -47,7 +47,7 @@ jobs:
 
       - name: Run xblock-sdk server
         working-directory: xblock-sdk
-        run: python manage.py runserver
+        run: python ./manage.py runserver
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
