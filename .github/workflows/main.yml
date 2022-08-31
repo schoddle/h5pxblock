@@ -41,6 +41,7 @@ jobs:
         working-directory: xblock-sdk
         run: |
           pwd
+          du -a .
           make install
 
       - name: Run xblock-sdk server
