@@ -23,7 +23,7 @@ jobs:
 
       - name: install pip
         run: |  
-          lsb_release -a
+          cat /etc/*-release
           python3 --version        
           # apt update -qq
           # apt install -y python3-pip
