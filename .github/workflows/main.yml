@@ -23,11 +23,10 @@ jobs:
 
       - name: print python
         run: |
-        python --version
-        run: sudo apt update
-        run: sudo apt install python3-pip
-        run: pip3 --version
-
+          python --version
+          sudo apt update
+          sudo apt install python3-pip
+          pip3 --version
 
       - name: setup django
         run: pip install django
