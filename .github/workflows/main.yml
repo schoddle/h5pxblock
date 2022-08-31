@@ -24,7 +24,7 @@ jobs:
       - name: print python
         run: |
           python --version
-          apt update
+          apt update -y
           apt install python3-pip
           pip3 --version
 
