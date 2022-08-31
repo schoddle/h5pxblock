@@ -39,7 +39,9 @@ jobs:
 
       - name: Setup xblock-sdk
         working-directory: xblock-sdk
-        run: make install
+        run: |
+          pwd
+          make install
 
       - name: Run xblock-sdk server
         working-directory: xblock-sdk
