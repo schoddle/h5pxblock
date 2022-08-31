@@ -48,7 +48,7 @@ jobs:
           pwd
           pip install -r requirements/dev.txt
           pip install -r requirements/local.txt
-          python3 ./manage.py runserver
+          nohup python3 ./manage.py runserver &
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
