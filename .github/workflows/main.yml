@@ -37,11 +37,11 @@ jobs:
           repository: openedx/xblock-sdk
 
       - name: Setup xblock-sdk
-        working-directory: xblock-sdk
+        working-directory: ./xblock-sdk
         run: make install
 
       - name: Run xblock-sdk server
-        working-directory: xblock-sdk
+        working-directory: ./xblock-sdk
         run: python manage.py runserver
 
       - name: Cypress run
