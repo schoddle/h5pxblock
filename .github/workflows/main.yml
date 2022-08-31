@@ -21,21 +21,20 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: print python
+      - name: install pip
         run: |
           python --version
           apt update -qq
           apt install -y python3-pip
           pip3 --version
 
-      - name: setup django
-        run: pip install django
+      # - name: setup django
+      #   run: pip install django
 
       - name: Checkout xblock-sdk repo
         uses: actions/checkout@v3
         with:
           repository: openedx/xblock-sdk
-          path: xblock-sdk
 
       - name: Setup xblock-sdk
         working-directory: xblock-sdk
