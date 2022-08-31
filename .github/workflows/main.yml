@@ -16,10 +16,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # - name: setup python
-      #   uses: actions/setup-python@v4
-      #   with:
-      #     python-version: ${{ matrix.python-version }}
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: install pip
         run: |          
@@ -27,6 +27,7 @@ jobs:
           apt install -y python3-pip
           python --version
           pip3 --version
+          pip --version
 
       # - name: setup django
       #   run: pip install django
@@ -41,8 +42,8 @@ jobs:
         working-directory: xblock-sdk
         run: |
           pwd
-          pip install -r requirements/dev.txt
-          pip install -r requirements/local.txt
+          pip3 install -r requirements/dev.txt
+          pip3 install -r requirements/local.txt
           python ./manage.py runserver
 
       - name: Cypress run
