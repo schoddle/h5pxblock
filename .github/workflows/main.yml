@@ -46,8 +46,8 @@ jobs:
         working-directory: xblock-sdk
         run: |
           pwd
-          pip install -wr requirements/dev.txt
-          pip install -wr requirements/local.txt
+          pip install -qr requirements/dev.txt
+          pip install -qr requirements/local.txt
           nohup python3 ./manage.py runserver > runserver.log &
       
       - name: Archive runserver log
