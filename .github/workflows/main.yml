@@ -49,13 +49,13 @@ jobs:
           pip install -qr requirements/dev.txt
           pip install -qr requirements/local.txt
           nohup python3 ./manage.py runserver &
-          wget http://localhost:8000 > runserver.log
+          wget -b http://localhost:8000
       
       - name: Archive runserver log
         uses: actions/upload-artifact@v3
         with:
           name: runserver-log
-          path: xblock-sdk/runserver.log
+          path: xblock-sdk/wget-log
 
       - name: Archive nohup log
         uses: actions/upload-artifact@v3
