@@ -48,20 +48,20 @@ jobs:
           pwd
           pip install -qr requirements/dev.txt
           pip install -qr requirements/local.txt
-          python3 ./manage.py runserver >> runserver.out 2>&1 &
-          wget -b http://localhost:8000
+          python3 ./manage.py runserver >> runserver.log 2>&1 &
+          wget --retry-connrefused http://localhost:8000 >> wget.log 2>&1
       
+      - name: Archive wget log
+        uses: actions/upload-artifact@v3
+        with:
+          name: wget-log
+          path: xblock-sdk/wget.log
+
       - name: Archive runserver log
         uses: actions/upload-artifact@v3
         with:
           name: runserver-log
-          path: xblock-sdk/wget-log
-
-      - name: Archive nohup log
-        uses: actions/upload-artifact@v3
-        with:
-          name: nohup-log
-          path: xblock-sdk/runserver.out
+          path: xblock-sdk/runserver.log
 
           
       # - name: Cypress run
