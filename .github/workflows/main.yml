@@ -46,12 +46,19 @@ jobs:
         working-directory: xblock-sdk
         run: |
           pwd
-          pip install -r requirements/dev.txt
-          pip install -r requirements/local.txt
-          nohup python3 ./manage.py runserver &
+          pip install -wr requirements/dev.txt
+          pip install -wr requirements/local.txt
+          nohup python3 ./manage.py runserver > runserver.log &
+      
+      - name: Archive runserver log
+        uses: actions/upload-artifact@v3
+        with:
+          name: runserver-log
+          path: xblock-sdk/runserver.log
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
+        working-directory: tests/cypress
         with:
           wait-on: 'http://localhost:8000'
           wait-on-timeout: 120
