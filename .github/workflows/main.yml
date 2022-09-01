@@ -48,7 +48,7 @@ jobs:
           pwd
           pip install -qr requirements/dev.txt
           pip install -qr requirements/local.txt
-          python3 ./manage.py runserver > runserver.log &
+          python3 ./manage.py runserver
       
       - name: Archive runserver log
         uses: actions/upload-artifact@v3
