@@ -49,13 +49,13 @@ jobs:
           pip install -qr requirements/dev.txt
           pip install -qr requirements/local.txt
           python3 ./manage.py runserver >> runserver.log 2>&1 &
-          wget --retry-connrefused http://localhost:8000 >> wget.log 2>&1
+          google-chrome-stable --headless --disable-gpu --print-to-pdf http://localhost:8000
       
       - name: Archive wget log
         uses: actions/upload-artifact@v3
         with:
           name: wget-log
-          path: xblock-sdk/wget.log
+          path: xblock-sdk/output.pdf
 
       - name: Archive runserver log
         uses: actions/upload-artifact@v3
