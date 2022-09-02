@@ -28,7 +28,7 @@ jobs:
           # python3 -m ensurepip --default-pip
           #python3 -m pip install --upgrade pip setuptools wheel        
           apt update -qq
-          apt install -y python3-pip python3-dev libxml2-dev libxslt-dev lib32z1-dev libjpeg62-dev
+          apt install -y python3-pip
           # python --version
           pip3 --version
           # pip --version
