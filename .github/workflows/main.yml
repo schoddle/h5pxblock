@@ -43,13 +43,20 @@ jobs:
           path: xblock-sdk
 
       - name: Setup xblock-sdk
-        working-directory: xblock-sdk
-        env:
-          EXCLUDE_SAMPLE_XBLOCKS: yes        
+        working-directory: xblock-sdk   
         run: |
           pwd
           pip install -qr requirements/dev.txt
           pip install -qr requirements/local.txt
+
+      - name: setup h5p xblock
+        run: |          
+          pip install .
+
+      - name: Run xblock workbench
+        env:
+          EXCLUDE_SAMPLE_XBLOCKS: yes           
+        run: |          
           python3 manage.py migrate --noinput
           python3 ./manage.py runserver &
 
@@ -57,17 +64,13 @@ jobs:
         uses: juliangruber/sleep-action@v1
         with:
           time: 5s
-
-      - name: setup h5p xblock
-        run: |          
-          pip install .
           
-      - name: monitor
-        working-directory: xblock-sdk
-        run: |          
-          ss -tulpn
-          curl http://localhost:8000 -o output.log
-          #google-chrome-stable --disable-gpu --no-sandbox --headless --screenshot http://127.0.0.1:8000
+      # - name: monitor
+      #   working-directory: xblock-sdk
+      #   run: |          
+      #     ss -tulpn
+      #     curl http://localhost:8000 -o output.log
+      #     #google-chrome-stable --disable-gpu --no-sandbox --headless --screenshot http://127.0.0.1:8000
       
       # - name: Archive wget log
       #   uses: actions/upload-artifact@v3
@@ -75,11 +78,11 @@ jobs:
       #     name: wget-log
       #     path: xblock-sdk/screenshot.png
 
-      - name: Archive runserver log
-        uses: actions/upload-artifact@v3
-        with:
-          name: runserver-log
-          path: xblock-sdk/output.log
+      # - name: Archive runserver log
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: runserver-log
+      #     path: xblock-sdk/output.log
 
           
       - name: Cypress run
