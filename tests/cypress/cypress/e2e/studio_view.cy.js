@@ -45,7 +45,7 @@ describe('H5P Studio View', () => {
             cy.contains('Reuse Existing H5P Content')
             .parent()
             .find('input[id=xb_existing_content_path]')
-            .should('have.value', '/media/h5pxblockmedia/h5pplayerxblock.h5pxblock.d0.u0')
+            .should('have.value', '/h5pxblockmedia/h5pplayerxblock.h5pxblock.d0.u0')
 
             cy.contains('Show H5P player frame')
             .parent()

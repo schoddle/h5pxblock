@@ -12,7 +12,7 @@ describe('H5P Studio View', () => {
         cy.wait('@studioSubmit')
 
         // Now access LMS
-        cy.intercept('GET', '/media/h5pxblockmedia/h5pplayerxblock.h5pxblock.d0.u0/h5p.json').as('rootJson')        
+        cy.intercept('GET', '/h5pxblockmedia/h5pplayerxblock.h5pxblock.d0.u0/h5p.json').as('rootJson')        
         cy.visit(Cypress.env('LMS_URL'))
         cy.wait('@rootJson')
         
