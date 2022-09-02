@@ -84,5 +84,4 @@ jobs:
           wait-on: 'http://localhost:8000'
           wait-on-timeout: 120
           browser: chrome
-          record: true
           working-directory: tests/cypress
