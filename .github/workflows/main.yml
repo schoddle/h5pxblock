@@ -50,6 +50,15 @@ jobs:
           pip install -qr requirements/local.txt
           python3 manage.py migrate --noinput
           python3 ./manage.py runserver &
+
+      - name: Sleep for 10s
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: 5s
+          
+      - name: monitor
+        working-directory: xblock-sdk
+        run: |          
           ss -tulpn
           curl http://localhost:8000 -o output.log
           #google-chrome-stable --disable-gpu --no-sandbox --headless --screenshot http://127.0.0.1:8000
