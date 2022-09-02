@@ -57,6 +57,10 @@ jobs:
         uses: juliangruber/sleep-action@v1
         with:
           time: 5s
+
+      - name: setup h5p xblock
+        run: |          
+          pip install .
           
       - name: monitor
         working-directory: xblock-sdk
