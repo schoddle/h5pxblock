@@ -44,6 +44,8 @@ jobs:
 
       - name: Setup xblock-sdk
         working-directory: xblock-sdk
+        env:
+          EXCLUDE_SAMPLE_XBLOCKS: yes        
         run: |
           pwd
           pip install -qr requirements/dev.txt
@@ -51,7 +53,7 @@ jobs:
           python3 manage.py migrate --noinput
           python3 ./manage.py runserver &
 
-      - name: Sleep for 10s
+      - name: Sleep for 5s to wait for django server getting up and running
         uses: juliangruber/sleep-action@v1
         with:
           time: 5s
@@ -76,11 +78,11 @@ jobs:
           path: xblock-sdk/output.log
 
           
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v4
-      #   with:
-      #     wait-on: 'http://localhost:8000'
-      #     wait-on-timeout: 120
-      #     browser: chrome
-      #     record: true
-      #     working-directory: tests/cypress
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          wait-on: 'http://localhost:8000'
+          wait-on-timeout: 120
+          browser: chrome
+          record: true
+          working-directory: tests/cypress
