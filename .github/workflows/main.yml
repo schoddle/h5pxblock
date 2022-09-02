@@ -43,7 +43,7 @@ jobs:
           path: xblock-sdk
 
       - name: Setup xblock-sdk
-        working-directory: xblock-sdk   
+        working-directory: xblock-sdk
         run: |
           pwd
           pip install -qr requirements/dev.txt
@@ -54,6 +54,7 @@ jobs:
           pip install .
 
       - name: Run xblock workbench
+        working-directory: xblock-sdk
         env:
           EXCLUDE_SAMPLE_XBLOCKS: yes           
         run: |          
