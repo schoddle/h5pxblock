@@ -28,7 +28,7 @@ jobs:
           # python3 -m ensurepip --default-pip
           #python3 -m pip install --upgrade pip setuptools wheel        
           apt update -qq
-          apt install -y python3-pip curl
+          apt install -y python3-pip curl iproute2
           # python --version
           pip3 --version
           # pip --version
@@ -50,7 +50,8 @@ jobs:
           pip install -qr requirements/local.txt
           python3 manage.py migrate --noinput
           python3 ./manage.py runserver &
-          curl localhost:8000 -o output.log
+          ss -tulpn
+          curl http://localhost:8000 -o output.log
           #google-chrome-stable --disable-gpu --no-sandbox --headless --screenshot http://127.0.0.1:8000
       
       # - name: Archive wget log
