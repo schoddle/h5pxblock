@@ -11,7 +11,7 @@ jobs:
       matrix:
         python-version: ['3.9']
 
-    container: cypress/browsers:node16.14.0-slim-chrome99-ff97
+    container: cypress/browsers:node14.17.6-chrome100-ff98
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
           # python3 -m ensurepip --default-pip
           #python3 -m pip install --upgrade pip setuptools wheel        
           apt update -qq
-          apt install -y python3-pip
+          apt install -y python3-pip python3-dev libxml2-dev libxslt-dev lib32z1-dev libjpeg62-dev
           # python --version
           pip3 --version
           # pip --version
@@ -50,7 +50,7 @@ jobs:
           pip install -qr requirements/local.txt
           python3 manage.py migrate --noinput
           python3 ./manage.py runserver >> runserver.log 2>&1 &
-          google-chrome-stable --no-sandbox --headless --screenshot http://127.0.0.1:8000
+          google-chrome-stable --disable-gpu --no-sandbox --headless --screenshot http://127.0.0.1:8000
       
       - name: Archive wget log
         uses: actions/upload-artifact@v3
