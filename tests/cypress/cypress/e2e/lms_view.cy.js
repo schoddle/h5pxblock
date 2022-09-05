@@ -20,7 +20,7 @@ describe('H5P Studio View', () => {
         cy.getIframe(".h5p-iframe").find('.h5p-drag-dropzone-container').should('have.length', 3)
         cy.getIframe(".h5p-iframe").find('a.h5p-link').should('be.visible')
         cy.getIframe(".h5p-iframe").find('.h5p-enable-fullscreen').should('be.visible')        
-        cy.getIframe(".h5p-iframe").find('.h5p-question-check-answer').click()
+        cy.getIframe(".h5p-iframe").find('.h5p-question-check-answer').click({force: true})
 
     })
 
