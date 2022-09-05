@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: edly-io/xblock-sdk
-          ref: edly-io:ziafazal/fix-media-file-404
+          ref: ziafazal/fix-media-file-404
           path: xblock-sdk
 
       - name: Setup xblock-sdk
