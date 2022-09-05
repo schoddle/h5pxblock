@@ -31,9 +31,10 @@ jobs:
       #   run: pip install django
 
       - name: Checkout xblock-sdk repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
-          repository: openedx/xblock-sdk
+          repository: edly-io/xblock-sdk
+          ref: edly-io:ziafazal/fix-media-file-404
           path: xblock-sdk
 
       - name: Setup xblock-sdk
@@ -53,17 +54,19 @@ jobs:
           EXCLUDE_SAMPLE_XBLOCKS: yes           
         run: |          
           python3 manage.py migrate --noinput
-          python3 ./manage.py runserver &
+          # python3 ./manage.py runserver &
 
-      - name: Sleep for 5s to wait for django server getting up and running
-        uses: juliangruber/sleep-action@v1
-        with:
-          time: 5s
-          
+      # - name: Sleep for 5s to wait for django server getting up and running
+      #   uses: juliangruber/sleep-action@v1
+      #   with:
+      #     time: 5s
+
+
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
+          start: python3 ../../xblock-sdk/manage.py runserver
           wait-on: 'http://localhost:8000'
-          wait-on-timeout: 120
+          wait-on-timeout: 10
           browser: chrome
           working-directory: tests/cypress
