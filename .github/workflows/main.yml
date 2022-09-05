@@ -7,28 +7,16 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ['3.9']
-
     container: cypress/browsers:node16.14.0-slim-chrome99-ff97
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      # - name: setup python
-      #   uses: actions/setup-python@v4
-      #   with:
-      #     python-version: ${{ matrix.python-version }}
 
       - name: install pip
         run: |  
           apt update -qq
           apt install -y python3-pip
           pip3 --version
-
-      # - name: setup django
-      #   run: pip install django
 
       - name: Checkout xblock-sdk repo
         uses: actions/checkout@v2
@@ -54,19 +42,16 @@ jobs:
           EXCLUDE_SAMPLE_XBLOCKS: yes           
         run: |          
           python3 manage.py migrate --noinput
-          # python3 ./manage.py runserver &
+          python3 ./manage.py runserver &
 
-      # - name: Sleep for 5s to wait for django server getting up and running
-      #   uses: juliangruber/sleep-action@v1
-      #   with:
-      #     time: 5s
-
+      - name: Sleep for 5s to wait for django server getting up and running
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: 5s
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
           start: python3 ../../xblock-sdk/manage.py runserver
-          wait-on: 'http://localhost:8000'
-          wait-on-timeout: 10
           browser: chrome
           working-directory: tests/cypress
