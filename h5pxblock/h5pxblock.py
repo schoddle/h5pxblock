@@ -182,6 +182,7 @@ class H5PPlayerXBlock(XBlock, CompletableXBlockMixin):
         )
         return frag
 
+    @XBlock.supports("multi_device")
     def student_view(self, context=None):
         """
         The primary view of the H5PPlayerXBlock, shown to students
